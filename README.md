@@ -2,6 +2,14 @@
 
 A cinematic narrative visualization app for the novel *逐玉* — exploring character relationships, emotional tension, loyalty, and power dynamics across five story stages.
 
+## Screenshots
+
+![Character overview — Snowbound Encounter](screenshots/1.png)
+
+![Relationship detail — Separation & War](screenshots/2.png)
+
+![Text input panel](screenshots/3.png)
+
 ## Features
 
 - **Interactive force-directed graph** — D3-powered character relationship visualization
