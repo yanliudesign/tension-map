@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  background: #0A0B10;
+  color: #CDD0E0;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── SVG Animations ───────────────────────── */
+@keyframes dashFlow {
+  from { stroke-dashoffset: 24; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes edgePulse {
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 1; }
+}
+
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1);   opacity: 0.55; }
+  50%       { transform: scale(1.18); opacity: 0.85; }
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* ── Utility classes ─────────────────────── */
+.animate-float-in  { animation: floatIn 0.4s ease-out; }
+.animate-dash-flow { animation: dashFlow 1.8s linear infinite; }
+.animate-edge-pulse{ animation: edgePulse 2.5s ease-in-out infinite; }
+.animate-ring-pulse{ animation: ringPulse 2.2s ease-in-out infinite; }
+
+.font-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* ── Scrollbar ───────────────────────────── */
+::-webkit-scrollbar            { width: 5px; height: 5px; }
+::-webkit-scrollbar-track      { background: #0A0B10; }
+::-webkit-scrollbar-thumb      { background: #282D42; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover{ background: #363C57; }
+
+/* ── Selection ───────────────────────────── */
+::selection { background: rgba(232,184,109,0.18); color: #E8B86D; }
+
+/* ── Range input ─────────────────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #E8B86D var(--pct, 0%), #282D42 var(--pct, 0%));
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #E8B86D;
+  cursor: pointer;
+  box-shadow: 0 0 0 3px rgba(232,184,109,0.18), 0 0 14px rgba(232,184,109,0.35);
+  transition: box-shadow 0.2s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 5px rgba(232,184,109,0.22), 0 0 20px rgba(232,184,109,0.5);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #E8B86D;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 14px rgba(232,184,109,0.35);
+}
+
+/* ── Gradient text ───────────────────────── */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #F2CC8A 0%, #E8B86D 50%, #C49050 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass panels ────────────────────────── */
+.glass-panel {
+  background: rgba(17, 19, 28, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(54, 60, 87, 0.5);
+}
+
+.glass-panel-dark {
+  background: rgba(10, 11, 16, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(40, 45, 66, 0.6);
+}
+
+/* ── Insight card shimmer ────────────────── */
+.shimmer-border {
+  background: linear-gradient(90deg,
+    rgba(232,184,109,0.0) 0%,
+    rgba(232,184,109,0.25) 50%,
+    rgba(232,184,109,0.0) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Score bars ──────────────────────────── */
+.score-bar-track {
+  height: 4px;
+  border-radius: 2px;
+  background: #1F2333;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
