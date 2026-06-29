@@ -142,8 +142,8 @@ Per-stage, per-mode insight cards: *most fractured bond · highest hidden tensio
 ## ✦ Quick start
 
 ```bash
-git clone https://github.com/yanliudesign/zhuyu.git
-cd zhuyu
+git clone https://github.com/yanliudesign/tension-map.git
+cd tension-map
 npm install
 npm run dev
 ```
