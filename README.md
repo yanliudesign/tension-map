@@ -1,18 +1,20 @@
 <!-- =============================================================== -->
 <!--                                                                 -->
-<!--   逐玉 · 张力图谱                                                -->
 <!--   Tension Map · Narrative Intelligence for any story            -->
 <!--                                                                 -->
 <!-- =============================================================== -->
 
 <div align="center">
 
+<sub><strong>English</strong> · <a href="./README.zh-CN.md">中文</a></sub>
+
+<br />
 <br />
 
 <h1>
-  <span style="letter-spacing: 0.08em;">张</span>·<span style="letter-spacing: 0.08em;">力</span>·<span style="letter-spacing: 0.08em;">图</span>·<span style="letter-spacing: 0.08em;">谱</span>
+  <span style="letter-spacing: 0.08em;">T</span>·<span style="letter-spacing: 0.08em;">E</span>·<span style="letter-spacing: 0.08em;">N</span>·<span style="letter-spacing: 0.08em;">S</span>·<span style="letter-spacing: 0.08em;">I</span>·<span style="letter-spacing: 0.08em;">O</span>·<span style="letter-spacing: 0.08em;">N</span>&nbsp;&nbsp;<span style="letter-spacing: 0.08em;">M</span>·<span style="letter-spacing: 0.08em;">A</span>·<span style="letter-spacing: 0.08em;">P</span>
   <br />
-  <sub><sup>Tension Map</sup></sub>
+  <sub><sup>张力图谱</sup></sub>
 </h1>
 
 <p>
@@ -20,8 +22,8 @@
 </p>
 
 <p>
-  绘制人物之间的隐形力量 —— 深情 · 猜忌 · 忠诚 · 背叛 · 权力 · 隐秘真相。<br />
-  观察关系如何随剧情推进而演变。
+  Plot the invisible forces between characters — affection, suspicion, loyalty,<br />
+  betrayal, power, hidden truth. Watch bonds evolve as the arc unfolds.
 </p>
 
 <br />
@@ -45,7 +47,7 @@
 <br />
 
 <p align="center">
-  <img src="screenshots/1.png" alt="Character overview — Snowbound Encounter" width="100%" />
+  <img src="screenshots/1.png" alt="Character overview" width="100%" />
 </p>
 
 <p align="center">
@@ -60,11 +62,11 @@ Most "character relationship diagrams" are wikis with arrows — flat, static, f
 
 **A story isn't flat.** Trust erodes. Affection survives betrayal. Power flips. The same character who would die for you in chapter 3 is the one twisting the knife in chapter 9.
 
-`张力图谱` treats a story as a **dynamic system**:
+Tension Map treats a story as a **dynamic system**:
 
 - Every character is a **node** with weight, traits, and a 5-stage emotional arc.
 - Every relationship is an **edge** scored 0–100 across four axes — tension, trust, affection, power — and re-evaluated at each story stage.
-- Three **analytical lenses** (情感张力 · 忠义图谱 · 权力格局) re-skin the same data to surface different truths.
+- Three **analytical lenses** (Affection · Loyalty · Power) re-skin the same data to surface different truths.
 
 The result is a graph that **breathes** with the story.
 
@@ -83,10 +85,10 @@ D3 v7 physics simulation. Click any node for a full character panel; any edge fo
 <td width="50%" valign="top">
 
 #### 🎚 Three analytical modes
-The same 21 characters, three different stories:
-- **情感张力** — affection, conflict, dependence
-- **忠义图谱** — trust, loyalty, betrayal, duty
-- **权力格局** — political threat, hidden truth, hierarchy
+The same cast, three different stories:
+- **Affection** — affection, conflict, dependence
+- **Loyalty** — trust, loyalty, betrayal, duty
+- **Power** — political threat, hidden truth, hierarchy
 
 </td>
 </tr>
@@ -131,11 +133,13 @@ Per-stage, per-mode insight cards: *most fractured bond · highest hidden tensio
 <td width="33%"><img src="screenshots/3.png" alt="Text input"></td>
 </tr>
 <tr>
-<td align="center"><sub>Character overview · 雪中初遇</sub></td>
-<td align="center"><sub>Relationship detail · 离散烽火</sub></td>
+<td align="center"><sub>Character overview</sub></td>
+<td align="center"><sub>Relationship detail</sub></td>
 <td align="center"><sub>Bring your own story</sub></td>
 </tr>
 </table>
+
+> The in-app UI is bilingual (English & Chinese). Mode labels render as *情感张力 · 忠义图谱 · 权力格局* alongside their English names.
 
 ---
 
@@ -167,9 +171,9 @@ flowchart LR
   D --> E[Scores<br/>5 × 4 per edge]
   E --> F[(data/slug.js)]
   F --> G[App<br/>D3 force graph]
-  G --> M1[情感张力]
-  G --> M2[忠义图谱]
-  G --> M3[权力格局]
+  G --> M1[Affection lens]
+  G --> M2[Loyalty lens]
+  G --> M3[Power lens]
 ```
 
 The data layer is plain ES modules. The render layer is React + D3 + Tailwind. No backend, no database — everything runs client-side off the static dataset you load.
@@ -181,8 +185,9 @@ relationship = {
   id, source, target,
   primaryType: 'affection',
   types: ['affection', 'hidden_truth'],
-  label: '契约之情', labelEn: 'Bound by contract, forged in fire',
-  quote: '我不需要你喜欢我，我只需要你活着。',
+  label: 'Bound by contract',
+  labelEn: 'Bound by contract, forged in fire',
+  quote: 'I don\'t need you to like me. I need you to stay alive.',
   summary, literaryNote,
   stages: {
     encounter:  { tensionScore: 32, trustScore: 12, affectionScore:  8, powerScore: 68 },
@@ -200,11 +205,11 @@ Each score is 0–100. Stages merge with any user "what-if" overrides at render 
 
 ## ✦ Bring your own story
 
-The 逐玉 dataset (`src/data/sampleData.js`) is the **first reference**. The graph engine is IP-agnostic — feed it any story.
+The bundled dataset (`src/data/sampleData.js`) — a 21-character map of the Chinese palace drama *Zhuyu* — is the **first reference**. The graph engine itself is IP-agnostic. Feed it any story.
 
 ### Option A · Hand-write a dataset
 
-Copy `sampleData.js` → `src/data/yourstory.js`, rewrite characters/relationships/stages.
+Copy `sampleData.js` → `src/data/yourstory.js`, rewrite characters / relationships / stages.
 
 ```diff
 // src/App.jsx
@@ -220,9 +225,9 @@ This repo is the **canonical renderer** of the [`tension-map`](https://github.co
 
 In your AI agent of choice, just say:
 
-> 帮我做《琅琊榜》的张力图谱
+> *"Build me a tension map for Nirvana in Fire."*
 
-The skill will walk you through: research → cast (15–25 characters) → arc (5 stages) → web (20–40 relationships) → scores → voice → assembled `src/data/langyabang.js`.
+The skill walks you through: research → cast (15–25 characters) → arc (5 stages) → web (20–40 relationships) → scores → voice → assembled `src/data/{slug}.js`.
 
 Then swap the import as in Option A.
 
@@ -236,7 +241,7 @@ Even without the agent skill, the methodology itself is portable. Every dataset 
 
 | Layer | Constraint | Why |
 |---|---|---|
-| **Cast** | 15–25 characters | Below 15 = thin; above 25 = visual noise that breaks the force layout |
+| **Cast** | 15–25 characters | Below 15 is thin; above 25 is visual noise that breaks the force layout |
 | **Stages** | Exactly 5, each a *psychological* turning point — not a chapter | The Timeline UI is hard-locked to 5; arbitrary chapter slicing produces flat curves |
 | **Edges** | 20–40 relationships | Sparse enough to read; dense enough to feel like a network |
 | **Types** | 9 fixed types | `affection · trust · conflict · dependence · betrayal · duty · loyalty · political_threat · hidden_truth` |
@@ -291,9 +296,9 @@ src/
 │   ├── Timeline.jsx         # 5-stage scrubber
 │   ├── InsightCards.jsx     # Generated narrative analysis
 │   ├── InputPanel.jsx       # Paste-your-own-story textarea
-│   └── ModeToggle.jsx       # 情感 / 忠义 / 权力 mode switcher
+│   └── ModeToggle.jsx       # Affection / Loyalty / Power mode switcher
 ├── data/
-│   ├── sampleData.js        # 逐玉 — the first reference dataset
+│   ├── sampleData.js        # Zhuyu — the first reference dataset
 │   └── {slug}.js            # add your own here
 └── utils/
     ├── parser.js            # Rough text → graph parser
@@ -316,7 +321,7 @@ src/
 - [ ] Export current view as SVG / PNG
 - [ ] Animated transitions between stages (currently snap)
 - [ ] Audio layer — a different motif per mode
-- [ ] Additional reference datasets — *琅琊榜 · 庆余年 · 红楼梦*…
+- [ ] Additional reference datasets — *Nirvana in Fire · Joy of Life · Dream of the Red Chamber…*
 
 Want to contribute a dataset? PR a `src/data/{slug}.js` and we'll feature it.
 
@@ -328,7 +333,7 @@ Want to contribute a dataset? PR a `src/data/{slug}.js` and we'll feature it.
 <tr>
 <td valign="top" width="60%">
 
-**Story** · *逐玉 (Zhuyu)*<br />
+**Story** · *Zhuyu (逐玉)*<br />
 **Design & engineering** · [@yanliudesign](https://github.com/yanliudesign)<br />
 **Methodology** · [`tension-map`](https://github.com/yanliudesign) Claude / Copilot skill<br />
 **Built with** · React · D3 · Tailwind · Vite · Cormorant Garamond
@@ -350,6 +355,6 @@ MIT © 2026 [@yanliudesign](https://github.com/yanliudesign)
 
 <div align="center"><br />
 
-<sub>玉 · ink · gold · garamond</sub>
+<sub>ink · gold · garamond</sub>
 
 </div>
